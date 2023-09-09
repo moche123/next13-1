@@ -1,8 +1,29 @@
+import Image from "next/image"
+import { ImageBlur } from "@/app/image.blur"
 
 function Card({ data }:any) {
-  console.log(data)
-  return (
-    <div>Name</div>
+  let formattedType = data.type
+  formattedType ||= "No type"
+    return (
+    <>
+      {
+        data.image && (
+          <div>
+            Name: {data.name}
+            Type: {formattedType}
+            {
+              data.image && (
+                <Image alt="image" priority src={data.image} 
+                                   width="100"
+                                     height="100"
+                                     blurDataURL={ImageBlur} />
+              )
+            }
+          </div>
+        )
+  
+      }
+    </>
   )
 }
 
